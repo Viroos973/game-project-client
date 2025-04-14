@@ -1,0 +1,22 @@
+export const ACTIONS = {
+    JOIN: 'validation-and-join',
+    JOIN_INTO_VOICE: 'join-into-voice',
+    START_JOIN_INTO_VOICE: 'start-join-into-voice',
+    LEAVE: "leave",
+    SET_USERNAME: "set-username",
+    GET_CLIENTS: "get-clients",
+    JOIN_WITH_KEY: "join-with-key",
+    SEND_KEY: "send-key",
+    SET_TOKEN: "set-token",
+    ADD_PEER: 'add-peer',
+    REMOVE_PEER: 'remove-peer',
+    RELAY_SDP: 'relay-sdp',
+    RELAY_ICE: 'relay-ice',
+    ICE_CANDIDATE: 'ice-candidate',
+    SESSION_DESCRIPTION: 'session-description',
+    CREATE_GAME: 'create-game',
+    START_GAME: 'start-game',
+    SET_STATE_COLONY: 'set-state-colony',
+    SET_ROOM: 'set-room',
+    ALREADY_GAME_STARTED: 'already-game-started'
+};

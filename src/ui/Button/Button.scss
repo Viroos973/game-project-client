@@ -1,0 +1,51 @@
+.btn {
+  padding: 10px;
+  border-radius: 10px;
+  color: #FFF8F0;
+  transition: 0.3s;
+  cursor: pointer;
+  border: none;
+  height: max-content;
+}
+
+.btn.btn:hover {
+  text-decoration: none;
+}
+
+.big-btn.big-btn {
+  padding: 20px;
+  font-family: GetVoIP-Grotesque, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.btn-w-100.btn-w-100 {
+  width: 100%;
+}
+
+.btn-link.btn-link {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.btn-link.btn-link:hover {
+  text-decoration: underline;
+}
+
+.btn-success {
+  background-color: #2F3454;
+}
+
+.btn-success:hover {
+  background-color: #111D4A;
+}
+
+.btn-cancel {
+  background-color: #92140C;
+}
+
+.btn-cancel:hover {
+  background-color: #581918;
+}

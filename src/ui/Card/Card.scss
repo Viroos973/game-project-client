@@ -1,0 +1,17 @@
+.card {
+  position: relative;
+  border-radius: 10px;
+  background-color: #FFCF99;
+  padding: 20px;
+  max-width: 80vw;
+
+  .card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.big-card {
+    width: 80vw;
+  }
+}
