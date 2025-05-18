@@ -40,18 +40,18 @@ const Lobby = ({ setIsStartGame }) => {
     }, [])
 
     return (
-        <div>
-            <h1>{roomID}</h1>
-            {
-                users.map((user, index) => (
-                    <UserCard key={index} {...user} isMe={user.socketId === socketId}/>
-                ))
-            }
+        <div className={"flex flex-column gap-10px"}>
+            <h4 className={"text-center mb-0"}>{roomID}</h4>
             {users[0]?.socketId === socketId && (
                 <Button className={"btn-success btn-w-100"} onClick={createGame}>
                     {"Начать игру"}
                 </Button>
             )}
+            {
+                users.map((user, index) => (
+                    <UserCard key={index} {...user} isMe={user.socketId === socketId}/>
+                ))
+            }
         </div>
     )
 }

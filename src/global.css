@@ -30,9 +30,8 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.text-center {
+  text-align: center;
 }
 
 .d-none {
@@ -43,12 +42,28 @@ h1 {
   display: flex;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .align-center {
   align-items: center;
 }
 
+.justify-around {
+  justify-content: space-around;
+}
+
 .gap-10px {
   gap: 10px
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-80px {
+  margin-bottom: 80px;
 }
 
 .error-message {

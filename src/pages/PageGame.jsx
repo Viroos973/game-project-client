@@ -6,6 +6,8 @@ import {Button} from "../ui/index.js";
 import Lobby from "../modules/Lobby/Lobby.jsx";
 import Game from "../modules/Game/Game.jsx";
 import {ACTIONS} from "../utils/socket/actions.js";
+import {Mic, MicOff} from "lucide-react"
+import {Footer} from "../ui/Footer/Footer.jsx";
 
 const PageGame = () => {
     const { id: roomID } = useParams();
@@ -38,7 +40,7 @@ const PageGame = () => {
     }, [roomID])
 
     return !isStartWithoutYou ? (
-        <>
+        <div className={"mb-80px"}>
             {
                 clients.map((client) => (
                     <audio className={"remote-audio"} key={client}
@@ -53,12 +55,14 @@ const PageGame = () => {
                 <Lobby setIsStartGame={setIsStartGame}/>
             )}
             <Game isStartGame={isStartGame}/>
-            <Button className={"btn-success btn-w-100"} onClick={() => toggleMute(setIsMuted)}>
-                {isMuted ? "Включить" : "Отключить"}
-            </Button>
-        </>
+            <Footer className={"flex align-center justify-around"}>
+                <Button className={"btn-success"} onClick={() => toggleMute(setIsMuted)}>
+                    {isMuted ? <MicOff width={20} height={20}/> : <Mic width={20} height={20}/>}
+                </Button>
+            </Footer>
+        </div>
     ) : (
-        <h1>{"Игра уже началась"}</h1>
+        <h1 className={"text-center"}>{"Игра уже началась"}</h1>
     )
 }
 

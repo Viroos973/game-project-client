@@ -5,6 +5,7 @@ import RoomCard from "./components/RoomCard/RoomCard.jsx";
 
 const Game = ({ isStartGame }) => {
     const [gameState, setGameState] = useState(null)
+    const [selectedRoom, setSelectedRoom] = useState(null);
 
     useEffect(() => {
         const handleStateColony = (state) => {
@@ -18,16 +19,24 @@ const Game = ({ isStartGame }) => {
         }
     }, [])
 
+    useEffect(() => {
+        if (!gameState || selectedRoom) return
+
+        setSelectedRoom(gameState.rooms[0].id)
+    }, [gameState, selectedRoom])
+
     return isStartGame && (
         <>
             {!gameState ? (
-                <h1>{"ЗАГРУЗКА"}</h1>
+                <h1 className={"text-center"}>{"ЗАГРУЗКА"}</h1>
             ) : (
                 <>
-                    <h1>{"КОМНАТЫ"}</h1>
-                    {gameState.rooms.map((room) => (
-                        <RoomCard {...room} key={room.id} />
-                    ))}
+                    <h1 className={"text-center"}>{"КОМНАТЫ"}</h1>
+                    <div className={"flex flex-column gap-10px"}>
+                        {gameState.rooms.map((room) => (
+                            <RoomCard {...room} key={room.id} selectedRoom={selectedRoom} setSelectedRoom={setSelectedRoom}/>
+                        ))}
+                    </div>
                 </>
             )}
         </>
