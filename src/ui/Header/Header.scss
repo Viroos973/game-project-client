@@ -1,9 +1,10 @@
-.footer {
+.header {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: calc(100vw - 20px);
   padding: 10px;
   background-color: #FFCF99;
-  border-top: solid 2px #242424;
+  z-index: 1;
+  border-bottom: solid 2px #242424;
 }

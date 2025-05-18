@@ -5,3 +5,5 @@ export { Card } from './Card/Card.jsx';
 export { Button } from './Button/Button.jsx';
 export { Badge } from './Badge/Badge.jsx';
 export { TextArea } from './TextArea/TextArea.jsx';
+export { Footer } from './Footer/Footer.jsx';
+export { Header } from './Header/Header.jsx';

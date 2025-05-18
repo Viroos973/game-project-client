@@ -30,6 +30,19 @@ body {
   min-height: 100vh;
 }
 
+html, body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  overscroll-behavior-y: none;
+}
+
 .text-center {
   text-align: center;
 }
@@ -64,6 +77,10 @@ body {
 
 .mb-80px {
   margin-bottom: 80px;
+}
+
+.mt-70px {
+  margin-top: 70px;
 }
 
 .error-message {

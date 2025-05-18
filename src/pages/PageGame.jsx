@@ -2,12 +2,11 @@ import {useParams} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
 import socket from "../utils/socket/socket.js";
 import useWebRTC from "../hooks/useWebRTC.js";
-import {Button} from "../ui/index.js";
+import {Button, Footer} from "../ui/index.js";
 import Lobby from "../modules/Lobby/Lobby.jsx";
 import Game from "../modules/Game/Game.jsx";
 import {ACTIONS} from "../utils/socket/actions.js";
-import {Mic, MicOff} from "lucide-react"
-import {Footer} from "../ui/Footer/Footer.jsx";
+import {Mic, MicOff} from "lucide-react";
 
 const PageGame = () => {
     const { id: roomID } = useParams();
