@@ -2,7 +2,7 @@ import {Button, Card, CustomForm, InputField} from "../ui/index.js";
 import {FormProvider, useForm} from "react-hook-form";
 import socket from "../utils/socket/socket.js";
 import {ACTIONS} from "../utils/socket/actions.js";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 const PageJoin = () => {
@@ -34,7 +34,7 @@ const PageJoin = () => {
     }
 
     return (
-        <Card>
+        <Card className='mt-70px'>
             <FormProvider {...methods}>
                 <CustomForm onSubmit={methods.handleSubmit(onSubmit)} className={"card-info"}>
                     <InputField name={"roomKey"} type={"text"} placeholder={"Введите ключ комнаты"}

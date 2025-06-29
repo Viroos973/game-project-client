@@ -6,15 +6,19 @@ import {Button, Footer} from "../ui/index.js";
 import Lobby from "../modules/Lobby/Lobby.jsx";
 import Game from "../modules/Game/Game.jsx";
 import {ACTIONS} from "../utils/socket/actions.js";
-import {Mic, MicOff} from "lucide-react";
+import {Map, Mic, MicOff, UsersRound} from "lucide-react";
+import CustomTimer from "../modules/Game/components/Timer/Timer.jsx";
 
 const PageGame = () => {
     const { id: roomID } = useParams();
     const hasEmitted = useRef(false);
     const { clients, provideMediaRef, toggleMute } = useWebRTC();
+    const [isMap, setIsMap] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const [isStartGame, setIsStartGame] = useState(false);
     const [isStartWithoutYou, setIsStartWithoutYou] = useState(false);
+    const [isLoadingGame, setIsLoadingGame] = useState(true);
+    const [isRestartTimer, setIsRestartTimer] = useState(false);
 
     useEffect(() => {
         if (!roomID) return
@@ -53,8 +57,16 @@ const PageGame = () => {
             {!isStartGame && (
                 <Lobby setIsStartGame={setIsStartGame}/>
             )}
-            <Game isStartGame={isStartGame}/>
+            <Game isStartGame={isStartGame} isMap={isMap} setIsLoadingGame={setIsLoadingGame} isRestartTimer={isRestartTimer}/>
             <Footer className={"flex align-center justify-around"}>
+                {!isLoadingGame && (
+                    <>
+                        <Button className={"btn-success"} onClick={() => setIsMap(prev => !prev)}>
+                            {isMap ? <UsersRound width={20} height={20}/> : <Map width={20} height={20}/>}
+                        </Button>
+                        <CustomTimer setIsRestartTimer={setIsRestartTimer}/>
+                    </>
+                )}
                 <Button className={"btn-success"} onClick={() => toggleMute(setIsMuted)}>
                     {isMuted ? <MicOff width={20} height={20}/> : <Mic width={20} height={20}/>}
                 </Button>

@@ -18,5 +18,7 @@ export const ACTIONS = {
     START_GAME: 'start-game',
     SET_STATE_COLONY: 'set-state-colony',
     SET_ROOM: 'set-room',
-    ALREADY_GAME_STARTED: 'already-game-started'
+    ALREADY_GAME_STARTED: 'already-game-started',
+    ACTIVATE_VOTING: 'activate-voting',
+    RESTART_TIMER: 'restart-timer'
 };

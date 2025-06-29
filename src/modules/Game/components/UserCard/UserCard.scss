@@ -1,0 +1,24 @@
+.userCard {
+  width: 288px;
+  height: 400px;
+  border-radius: 10px;
+  background-color: #FFCF99;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px;
+
+  .internalCard {
+    border-radius: 10px;
+    background-color: #FFF8F0;
+    min-height: 20px;
+    color: #1E1E24;
+    padding: 10px;
+  }
+
+  .content {
+    height: calc(100% - 80px);
+    overflow-y: auto;
+  }
+}

@@ -3,7 +3,7 @@ import socket from "../../../../utils/socket/socket.js";
 import {ACTIONS} from "../../../../utils/socket/actions.js";
 import {LockKeyhole, LockKeyholeOpen, MapPin, MapPinCheckInside} from "lucide-react"
 
-const RoomCard = ({ name, isOpen, usersNum, id, selectedRoom, setSelectedRoom }) => {
+const RoomCard = ({ name, isOpen, usersNum, id, selectedRoom, setSelectedRoom, isRestartTimer }) => {
     const handleSetRoom = () => {
         if (!isOpen) return
 
@@ -17,7 +17,8 @@ const RoomCard = ({ name, isOpen, usersNum, id, selectedRoom, setSelectedRoom })
                 <p>{name}</p>
                 <div className={"flex align-center gap-10px"}>
                     <p>{usersNum}</p>
-                    <Button className={selectedRoom === id ? "btn-select" : "btn-success"} onClick={handleSetRoom}>
+                    <Button className={selectedRoom === id ? "btn-select" : "btn-success"}
+                            onClick={handleSetRoom} disabled={isRestartTimer}>
                         {selectedRoom === id ? <MapPinCheckInside width={20} height={20}/> : <MapPin width={20} height={20}/>}
                     </Button>
                     <Button className={"btn-success"}>
