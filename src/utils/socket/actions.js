@@ -20,5 +20,9 @@ export const ACTIONS = {
     SET_ROOM: 'set-room',
     ALREADY_GAME_STARTED: 'already-game-started',
     ACTIVATE_VOTING: 'activate-voting',
-    RESTART_TIMER: 'restart-timer'
+    RESTART_TIMER: 'restart-timer',
+    STOP_ACTIVITY: 'stop-activity',
+    END_VOTING: 'end-voting',
+    VOTE: 'vote',
+    MOVE_ALL_TO_LOBBY: 'move-all-to-lobby'
 };

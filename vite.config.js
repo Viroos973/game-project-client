@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     allowedHosts: [
-      '0weevh-95-191-10-201.ru.tuna.am',
+      'ml7rda-95-191-10-201.ru.tuna.am',
       'localhost',
       '127.0.0.1'
     ]

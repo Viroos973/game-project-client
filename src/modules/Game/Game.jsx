@@ -8,7 +8,7 @@ import Slider from "react-slick";
 import UserCard from "./components/UserCard/UserCard.jsx";
 import {parserToken} from "../../utils/func/parserToken.js";
 
-const Game = ({ isStartGame, isMap, setIsLoadingGame, isRestartTimer }) => {
+const Game = ({ isStartGame, isMap, setIsLoadingGame, isRestartTimer, isActive }) => {
     const socketId = parserToken(localStorage.getItem("token"))?.userId;
 
     const [gameState, setGameState] = useState(null)
@@ -55,17 +55,21 @@ const Game = ({ isStartGame, isMap, setIsLoadingGame, isRestartTimer }) => {
 
         if (!gameState || selectedRoom) return
 
-        const socketId = parserToken(localStorage.getItem("token"))?.userId;
-        setMyState(gameState.users.find(user => user.id === socketId))
-
         setSelectedRoom(gameState.rooms[0].id)
     }, [gameState, selectedRoom])
 
     useEffect(() => {
-        if (!isRestartTimer || !gameState) return
+        if ((!isRestartTimer && isActive) || !gameState) return
 
         setSelectedRoom(gameState.rooms[0].id)
-    }, [isRestartTimer, gameState])
+    }, [isRestartTimer, isActive, gameState])
+
+    useEffect(() => {
+        if (!gameState) return
+
+        const socketId = parserToken(localStorage.getItem("token"))?.userId;
+        setMyState(gameState.users.find(user => user.id === socketId))
+    }, [gameState]);
 
     return isStartGame && (
         <>
@@ -82,7 +86,7 @@ const Game = ({ isStartGame, isMap, setIsLoadingGame, isRestartTimer }) => {
                         <div className="slider-container">
                             <Slider {...getSettings()}>
                                 {gameState.users.map((user) => (
-                                    <UserCard {...user} key={user.id} myState={myState}/>
+                                    <UserCard {...user} key={user.id} myState={myState} isActive={isActive}/>
                                 ))}
                             </Slider>
                         </div>
@@ -92,7 +96,8 @@ const Game = ({ isStartGame, isMap, setIsLoadingGame, isRestartTimer }) => {
                             <div className={"flex flex-column gap-10px"}>
                                 {gameState.rooms.map((room) => (
                                     <RoomCard {...room} key={room.id} selectedRoom={selectedRoom}
-                                              setSelectedRoom={setSelectedRoom} isRestartTimer={isRestartTimer}/>
+                                              setSelectedRoom={setSelectedRoom}
+                                              isRestartTimer={isRestartTimer || !isActive}/>
                                 ))}
                             </div>
                         </>

@@ -19,6 +19,7 @@ const PageGame = () => {
     const [isStartWithoutYou, setIsStartWithoutYou] = useState(false);
     const [isLoadingGame, setIsLoadingGame] = useState(true);
     const [isRestartTimer, setIsRestartTimer] = useState(false);
+    const [isActive, setIsActive] = useState(true);
 
     useEffect(() => {
         if (!roomID) return
@@ -31,14 +32,20 @@ const PageGame = () => {
         }
 
         const handleAlreadyStarted = () => {
-            console.log('+')
             setIsStartWithoutYou(true)
         }
 
+        const handleStopActivity = () => {
+            setIsActive(false)
+            socket.emit(ACTIONS.MOVE_ALL_TO_LOBBY)
+        }
+
         socket.on(ACTIONS.ALREADY_GAME_STARTED, handleAlreadyStarted)
+        socket.on(ACTIONS.STOP_ACTIVITY, handleStopActivity)
 
         return () => {
             socket.off(ACTIONS.ALREADY_GAME_STARTED, handleAlreadyStarted)
+            socket.off(ACTIONS.STOP_ACTIVITY, handleStopActivity)
         }
     }, [roomID])
 
@@ -57,14 +64,15 @@ const PageGame = () => {
             {!isStartGame && (
                 <Lobby setIsStartGame={setIsStartGame}/>
             )}
-            <Game isStartGame={isStartGame} isMap={isMap} setIsLoadingGame={setIsLoadingGame} isRestartTimer={isRestartTimer}/>
+            <Game isStartGame={isStartGame} isMap={isMap} setIsLoadingGame={setIsLoadingGame}
+                  isRestartTimer={isRestartTimer} isActive={isActive}/>
             <Footer className={"flex align-center justify-around"}>
                 {!isLoadingGame && (
                     <>
                         <Button className={"btn-success"} onClick={() => setIsMap(prev => !prev)}>
                             {isMap ? <UsersRound width={20} height={20}/> : <Map width={20} height={20}/>}
                         </Button>
-                        <CustomTimer setIsRestartTimer={setIsRestartTimer}/>
+                        <CustomTimer setIsRestartTimer={setIsRestartTimer} isActive={isActive}/>
                     </>
                 )}
                 <Button className={"btn-success"} onClick={() => toggleMute(setIsMuted)}>
